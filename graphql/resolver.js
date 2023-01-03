@@ -22,6 +22,10 @@ const resolvers = {
                 id: res.id,
                 ...res._doc
             }
+        },
+        async deleteUser(_, { ID }) {
+            const isDeleted = (await Todo.deleteOne({ _id: ID })).deleteCount;
+            return isDeleted;
         }
     }
 }
