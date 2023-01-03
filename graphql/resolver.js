@@ -1,17 +1,29 @@
-
+import Todo from '../schema/schema.js'
 
 const resolvers = {
     Query: {
-        users() {
-            return [{
-                id:1,
-                name: 'Azharul RAJ',
-                username: 'raj',
-                age: 22,
-                isGood:true
-            }];
-         }
-     }
+        async user(_, { ID }) {
+            return await Todo.findById(ID)
+        },
+        async users() {
+            return await Todo.find();
+        }
+    },
+    Mutation: {
+        async createUser(_, { userInput: { name, roll, isGood } }) {
+            const createUser = new Todo({
+                name: name,
+                roll: roll,
+                isGood: isGood,
+                date:new Date().toISOString()
+            })
+            const res = await createUser.save()
+            return {
+                id: res.id,
+                ...res._doc
+            }
+        }
+    }
 }
  
 export default resolvers;

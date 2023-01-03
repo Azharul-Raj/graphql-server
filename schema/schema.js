@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { model } from "mongoose";
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -18,4 +18,4 @@ const userSchema = new mongoose.Schema({
         default:Date.now()
     }
 })
-export default userSchema;
+module.exports = model('Todo', userSchema);
