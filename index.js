@@ -1,8 +1,9 @@
 
-import { ApolloServer } from "apollo-server";
-import typeDefs from "./graphql/typeDefs.js";
-import resolvers from "./graphql/resolver.js";
-import mongoose from 'mongoose';
+// import { ApolloServer } from "apollo-server";
+const {ApolloServer} =require("apollo-server")
+const typeDefs = require('./graphql/typeDef')
+const resolvers=require('./graphql/resolvers')
+const mongoose=require("mongoose")
 
 
 mongoose.set('strictQuery', false);
